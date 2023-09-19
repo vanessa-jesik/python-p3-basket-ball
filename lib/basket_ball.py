@@ -1,3 +1,60 @@
+def num_points_per_game(name):
+    for player in game_dict()["home"]["players"]:
+        if player["name"] == name:
+            return player["points_per_game"]
+    for player in game_dict()["away"]["players"]:
+        if player["name"] == name:
+            return player["points_per_game"]
+
+
+def player_age(name):
+    for player in game_dict()["home"]["players"]:
+        if player["name"] == name:
+            return player["age"]
+    for player in game_dict()["away"]["players"]:
+        if player["name"] == name:
+            return player["age"]
+
+
+def team_colors(name):
+    if game_dict()["home"]["team_name"] == name:
+        return game_dict()["home"]["colors"]
+    elif game_dict()["away"]["team_name"] == name:
+        return game_dict()["away"]["colors"]
+
+
+def team_names():
+    names = []
+    names.append(game_dict()["home"]["team_name"])
+    names.append(game_dict()["away"]["team_name"])
+    return names
+
+
+def player_numbers(name):
+    return [
+        player["number"]
+        for player in game_dict()["home"]["players"]
+        if game_dict()["home"]["team_name"] == name
+    ] or [
+        player["number"]
+        for player in game_dict()["away"]["players"]
+        if game_dict()["away"]["team_name"]
+    ]
+
+
+def player_stats(name):
+    for player in game_dict()["home"]["players"]:
+        if player["name"] == name:
+            return player
+    for player in game_dict()["away"]["players"]:
+        if player["name"] == name:
+            return player
+
+
+def average_rebounds_by_shoe_brand():
+    pass
+
+
 def game_dict():
     return {
         "home": {
@@ -90,11 +147,10 @@ def game_dict():
                 },
             ],
         },
-            
         "away": {
             "team_name": "Washington Wizards",
             "colors": ["Red", "White", "Navy Blue"],
-            "players": [   
+            "players": [
                 {
                     "name": "Bradley Beal",
                     "number": 3,
@@ -179,6 +235,6 @@ def game_dict():
                     "height_inches": 80,
                     "shoe_brand": "Jordan",
                 },
-            ]
-        }
+            ],
+        },
     }
